@@ -2,6 +2,7 @@
 import axios from 'axios';
 const worldurl="https://covid19.mathdro.id/api";
 const countryurl="https://api.covidindiatracker.com/total.json";
+const stateurl = "https://api.covidindiatracker.com/state_data.json";
 export const getworlddata = async ()=>{
 try{
 
@@ -32,3 +33,36 @@ catch(error){
 
 
 } 
+export const getstatedata= async () =>{
+    try{
+            const {data}=await axios.get(stateurl);
+         
+           return data;
+    
+    
+    }
+    catch(error){
+    
+    }
+    
+    
+    } 
+    export const getstatenames= async () =>{
+        try{
+                const {data}=await axios.get(stateurl);
+                let names=[];
+                for(let i=0;i<data.length;i++){
+                    names.push(data[i].state);
+
+                }
+                
+             
+               return names;
+        
+        
+        }
+        catch(error){
+        
+        }
+
+    }
